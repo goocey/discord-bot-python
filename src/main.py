@@ -3,7 +3,6 @@ import discord
 import asyncio
 import yaml
 from discord.ext import commands
-from discord.ext.commands import Bot
 from pprint import pprint
 
 # discord.py reference: https://discordpy.readthedocs.io/en/latest/api.html
@@ -13,21 +12,20 @@ bot = commands.Bot(command_prefix="!")
 # 初期イベント(起動時？)
 @bot.event
 async def on_ready():
-    await bot.change_presence(game=discord.Game(name='with fire'))
+    activity = discord.Game(name="with fire")
+    await bot.change_presence(status=discord.Status.online, activity=activity)
     print("Logged in as " + bot.user.name)
-    # print(discord.Server.name)
-    print(bot.get_channel("ofuton"))
+    print(discord.Server.name)
 
 # !ofutonコマンド
 @bot.command(pass_context=True)
 async def ofuton(ctx):
     victim = ctx.message.mentions[0] # お布団行対象ユーザー
-    channel = ctx.message.author.voice.voice_channel # 対象ユーザがいるボイスチャンネル？
-    pprint(channel) # 参照OK
+    # channel = ctx.message.author.voice.voice_channel # 対象ユーザがいるボイスチャンネル？
 
-    ofuton_channel = ctx.get_channel("ofuton")  # <=== 問題のコード
+    ofuton_channel = bot.get_channel(564139070918230019)  # <=== 問題のコード
     # 以下のmove_memberは動作的に問題なさそう（create_channelで作成したChannelオブジェクトは使用可能）
-    await bot.move_member(victim, ofuton_channel)
+    await victim.move_to(ofuton_channel)
 
 # みんなのtwitterのツイート捜索するためのテストコード
 @bot.command(pass_context=True)
