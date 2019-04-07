@@ -1,5 +1,7 @@
+# coding:utf-8
 import discord
 import asyncio
+import yaml
 from discord.ext import commands
 from discord.ext.commands import Bot
 from pprint import pprint
@@ -13,7 +15,7 @@ bot = commands.Bot(command_prefix="!")
 async def on_ready():
     await bot.change_presence(game=discord.Game(name='with fire'))
     print("Logged in as " + bot.user.name)
-    print(discord.Server.name)
+    # print(discord.Server.name)
     print(bot.get_channel("ofuton"))
 
 # !ofutonコマンド
@@ -23,7 +25,7 @@ async def ofuton(ctx):
     channel = ctx.message.author.voice.voice_channel # 対象ユーザがいるボイスチャンネル？
     pprint(channel) # 参照OK
 
-    ofuton_channel = ctx.get_channel("ofuton") # <=== 問題のコード
+    ofuton_channel = ctx.get_channel("ofuton")  # <=== 問題のコード
     # 以下のmove_memberは動作的に問題なさそう（create_channelで作成したChannelオブジェクトは使用可能）
     await bot.move_member(victim, ofuton_channel)
 
@@ -35,4 +37,7 @@ async def all_user(ctx):
         # でもねー。Memberオブジェクトって拡張的なメタデータはないっぽい。
         pprint(member)
 
-bot.run("NTY0MTA3ODg5OTU5MjM5Njgz.XKnptg.o3AjB7ekFES8ShRdaZu7C0FCRWU")
+with open('data.yml') as file:
+    token = yaml.safe_load(file)
+
+bot.run(token['token'])
