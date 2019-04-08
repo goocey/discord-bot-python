@@ -23,9 +23,6 @@ async def ofuton(ctx):
     # 移動
     await victim.move_to(ofuton_channel)
 
-with open('data.yml') as file:
-    token = yaml.safe_load(file)
-
 # twitterの情報を登録する
 @bot.command(pass_context=True)
 async def registry_twitter(ctx):
@@ -36,5 +33,18 @@ async def registry_twitter(ctx):
     f = open('twitter.yml', mode="a")
     data = reg_account.name + ": " + twitter_account
     f.write(str(data))
+
+# twitterの情報を表示する
+@bot.command(pass_context=True)
+async def display_twitter(ctx):
+    dis_account = ctx.message.mentions[0]
+
+    f = open('twitter.yml')
+    twitter = yaml.safe_load(f)
+
+    await ctx.channel.send(twitter[dis_account.name])
+
+with open('data.yml') as file:
+    token = yaml.safe_load(file)
 
 bot.run(token['token'])
