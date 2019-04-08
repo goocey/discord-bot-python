@@ -3,13 +3,10 @@ import discord
 import asyncio
 import yaml
 from discord.ext import commands
-from pprint import pprint
-
-# discord.py reference: https://discordpy.readthedocs.io/en/latest/api.html
 
 bot = commands.Bot(command_prefix="!")
 
-# 初期イベント(起動時？)
+# 初期イベント
 @bot.event
 async def on_ready():
     activity = discord.Game(name="with fire")
@@ -19,22 +16,25 @@ async def on_ready():
 # !ofutonコマンド
 @bot.command(pass_context=True)
 async def ofuton(ctx):
-    victim = ctx.message.mentions[0] # お布団行対象ユーザー
-    # channel = ctx.message.author.voice.voice_channel # 対象ユーザがいるボイスチャンネル？
+    victim = ctx.message.mentions[0] 
 
-    ofuton_channel = bot.get_channel(564139070918230019)  # <=== 問題のコード
-    # 以下のmove_memberは動作的に問題なさそう（create_channelで作成したChannelオブジェクトは使用可能）
+    ofuton_channel = bot.get_channel(564139070918230019)
+
+    # 移動
     await victim.move_to(ofuton_channel)
-
-# みんなのtwitterのツイート捜索するためのテストコード
-@bot.command(pass_context=True)
-async def all_user(ctx):
-
-    for member in bot.get_all_members():
-        # でもねー。Memberオブジェクトって拡張的なメタデータはないっぽい。
-        pprint(member)
 
 with open('data.yml') as file:
     token = yaml.safe_load(file)
+
+# twitterの情報を登録する
+@bot.command(pass_context=True)
+async def registry_twitter(ctx):
+    reg_account = ctx.message.mentions[0]
+    message = ctx.message.content
+    twitter_account = message.split("  ")[1]
+    
+    f = open('twitter.yml', mode="a")
+    data = reg_account.name + ": " + twitter_account
+    f.write(str(data))
 
 bot.run(token['token'])
