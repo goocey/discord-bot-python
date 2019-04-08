@@ -15,7 +15,6 @@ async def on_ready():
     activity = discord.Game(name="with fire")
     await bot.change_presence(status=discord.Status.online, activity=activity)
     print("Logged in as " + bot.user.name)
-    print(discord.Server.name)
 
 # !ofutonコマンド
 @bot.command(pass_context=True)
