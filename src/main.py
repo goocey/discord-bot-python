@@ -3,6 +3,7 @@ import discord
 import asyncio
 import yaml
 from discord.ext import commands
+from pprint import pprint
 
 bot = commands.Bot(command_prefix="!")
 
