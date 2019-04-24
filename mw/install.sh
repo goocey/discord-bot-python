@@ -1,6 +1,9 @@
 #!/bin/sh
 
 yum update -y
-yum install python36 python36-pip
+yum install -y python36 python36-pip memcached
+systemctl start memcached
+systemctl enable memcached
 /usr/local/bin/pip3 install --upgrade pip
-/usr/local/bin/pip3 install discord
+cd /vagrant/mw/
+/usr/local/bin/pip3 install -r require.txt
