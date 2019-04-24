@@ -2,4 +2,4 @@
 discord.py
 pyyaml
 requests_oauthlib
-python-memcached
+psycopg2-binary
