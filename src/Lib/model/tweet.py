@@ -12,6 +12,8 @@ class Tweet(Base):
     id = Column('id', Integer, primary_key = True)
     tid = Column('tid', String)
     user = Column('user', String)
+    screen_name = Column('screen_name', String)
+    url = Column('url', String)
     created_date = Column('created_date', DateTime)
     post_status = Column('post_status', String(1))
 

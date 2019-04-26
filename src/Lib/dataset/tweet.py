@@ -18,7 +18,8 @@ class Tweet():
 
         ステータスが0のデータ
         """
-        users = session.query(tw).filter( tw.post_status == 0).all()
+        users = session.query(tw).filter( tw.post_status == 0 ).\
+            order_by(desc(tw.created_date)).all()
         return users
 
     def add_values(self,tweets):
@@ -43,7 +44,8 @@ class Tweet():
                 if maxtimestamp is None or maxtimestamp <= created_date:
                     # 新しいデータであれば格納
                     tw_data = tw(user=tweet['user'], tid=tweet['tid'],\
-                        created_date=tweet['created_date'], post_status = 0)
+                        url=tweet['url'], screen_name=tweet['screen_name'], \
+                            created_date=tweet['created_date'], post_status = 0)
                     session.add(tw_data)
                     session.flush()
                     session.commit()

@@ -2,10 +2,9 @@ import yaml
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
+from ..settings import settings
 
-with open('data.yml') as file:
-    setting = yaml.safe_load(file)
-
+setting = settings.get()
 ENGINE = create_engine(
     setting['DATABASE'],
     encoding = setting['DATABASE_ENCODING'],

@@ -6,51 +6,39 @@ import time
 import os
 from discord.ext import commands
 from pprint import pprint
+from discord import TextChannel, VoiceChannel
+import threading
+from Lib.dataset.tweet import Tweet
+from Lib.model.tweet import Tweet as tw
+from Lib.model.db import session
+from Lib.settings import settings
 
-bot = commands.Bot(command_prefix="!")
+class Chat(discord.Client):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-# 初期イベント
-@bot.event
-async def on_ready():
-    activity = discord.Game(name="with fire")
-    await bot.change_presence(status=discord.Status.online, activity=activity)
-    print("Logged in as " + bot.user.name)
+    async def on_ready(self):
+        print('Logged in as')
+        channel = discord.utils.get(self.get_all_channels(),  guild__name='test' ,name='tweet')
+        # create the background task and run it in the background
+        self.bg_task = self.loop.create_task(self.my_background_task(channel))
 
-    loop = asyncio.get_event_loop()
-    asyncio.ensure_future(tweet_read())
-    asyncio.ensure_future(second_function())
-    loop.run_forever()
+    async def my_background_task(self, channel):
+        await client.wait_until_ready()
+        # await client.wait_for('ready')
+        print('background_task')
+            
+        tw = Tweet()
+        print(channel)
+        while True:
+            for tweet in tw.get_all_enable_status():
+                await channel.send(tweet.url)
+                tweet.post_status=1
+                session.flush()
+                session.commit()
+                await asyncio.sleep(1)
+            await asyncio.sleep(10)
 
-async def tweet_read():
-    time.sleep(5)
-    print("read!")
-
-async def second_function():
-    time.sleep(5)
-    print("second")
-
-# twitterの情報を登録する
-@bot.command(pass_context=True)
-async def registry_twitter(ctx):
-    reg_account = ctx.message.mentions[0]
-    message = ctx.message.content
-    twitter_account = message.split("  ")[1]
-    
-    f = open('twitter.yml', mode="a")
-    data = reg_account.name + ": " + twitter_account
-    f.write(str(data))
-
-# twitterの情報を表示する
-@bot.command(pass_context=True)
-async def display_twitter(ctx):
-    dis_account = ctx.message.mentions[0]
-
-    f = open('twitter.yml')
-    twitter = yaml.safe_load(f)
-
-    await ctx.channel.send(twitter[dis_account.name])
-
-print(os.path.dirname(__file__))
-with open(os.path.dirname(__file__) + 'data.yml') as file:
-    token = yaml.safe_load(file)
-bot.run(token['DISCORD_TOKEN'])
+setting = settings.get()
+client = Chat()
+client.run(setting['DISCORD_TOKEN'])
