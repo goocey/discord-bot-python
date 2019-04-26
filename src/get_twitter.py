@@ -17,7 +17,10 @@ def read_twitter():
     tweet.add_values(messages)
 
 def main():
-    schedule.every(10).minutes.do(job)
+    count=10
+    job()
+    time.sleep(count)
+    schedule.every(count).minutes.do(job)
     while True:
         schedule.run_pending()
         time.sleep(1)

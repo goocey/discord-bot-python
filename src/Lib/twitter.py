@@ -1,16 +1,15 @@
 import json
-import yaml
 import requests
 from requests_oauthlib import OAuth1Session
 from .tw_message import tw_message
 from .dataset.tweet import Tweet
+from Lib.settings import settings
 
 
 class Twitter:
 
     def __init__(self):
-        with open('data.yml') as file:
-            token = yaml.safe_load(file)
+        token = settings.get()
         CK = token['CONSUMER_KEY']
         CS = token['CONSUMER_SECRET']
         AT = token['ACCESS_TOKEN']
@@ -44,7 +43,8 @@ class Twitter:
             timelines = json.loads(res.text)
             
             for line in timelines:
-                message.add_message(line['user']['name'], line['id_str'], line['created_at'])
+                message.add_message(line['user']['name'], line['user']['screen_name'],\
+                    line['id_str'], line['created_at'])
             return message
         else: #正常通信出来なかった場合
             raise requests.exceptions.ConnectionError

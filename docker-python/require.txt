@@ -4,3 +4,4 @@ pyyaml
 requests_oauthlib
 sqlalchemy
 schedule
+psycopg2-binary
