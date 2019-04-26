@@ -51,6 +51,6 @@ async def display_twitter(ctx):
     await ctx.channel.send(twitter[dis_account.name])
 
 print(os.path.dirname(__file__))
-with open(os.path.dirname(__file__) + '/data.yml') as file:
+with open(os.path.dirname(__file__) + 'data.yml') as file:
     token = yaml.safe_load(file)
 bot.run(token['DISCORD_TOKEN'])
