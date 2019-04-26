@@ -21,8 +21,5 @@ class Tweet(Base):
         """
         Base.metadata.create_all(bind=ENGINE)
 
-    def find(ids):
-        Base.query
-
 if __name__ == "__main__":
     main()
