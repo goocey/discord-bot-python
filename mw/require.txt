@@ -2,4 +2,5 @@
 discord.py
 pyyaml
 requests_oauthlib
-psycopg2-binary
+sqlalchemy
+schedule
