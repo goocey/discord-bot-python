@@ -4,6 +4,10 @@ from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
 from ..settings import settings
 
+"""
+sqlalchemyのでDB接続周りを行うメソッド実行用ソース
+"""
+
 setting = settings.get()
 ENGINE = create_engine(
     setting['DATABASE'],

@@ -4,26 +4,21 @@ from Lib.dataset.tweet import Tweet
 import schedule
 import time
 
-def job():
-    # 定期実行させたい処理
-    print('read')
-    read_twitter()
-
 def read_twitter():
-    twitter = Twitter()
-    twitter.get_list_id('kokoro_discord')
-    messages =  twitter.read_list_tl()
-    tweet = Tweet()
-    tweet.add_values(messages)
+        twitter = Twitter()
+        twitter.get_list_id('kokoro_discord')
+        messages =  twitter.read_list_tl()
+        tweet = Tweet()
+        tweet.add_values(messages)
 
 def main():
-    count=10
-    job()
-    time.sleep(count)
-    schedule.every(count).minutes.do(job)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+        count=10
+        read_twitter()
+        time.sleep(count)
+        schedule.every(count).minutes.do(read_twitter)
+        while True:
+                schedule.run_pending()
+                time.sleep(1)
 
 if __name__ == "__main__":
     main()

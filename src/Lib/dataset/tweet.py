@@ -9,14 +9,23 @@ import datetime
 
 
 class Tweet():
+
+    """
+    tweet関連DB操作クラス
+    """
+
     def __init__(self):
         pass
 
     # 投稿対象データ
     def get_all_enable_status(self):
-        """投稿対象データを返却
+        """未投稿データを返却
 
-        ステータスが0のデータ
+        Args:
+            self(Lib.datase.Tweet): 
+
+            Returns:
+                [Lib.model.Tweet]: 未投稿データ
         """
         users = session.query(tw).filter( tw.post_status == 0 ).\
             order_by(desc(tw.created_date)).all()
@@ -31,7 +40,7 @@ class Tweet():
            => つまり、後から参加した人のツイートは除外する
 
         Args:
-            self (Tweet): 
+            self(Lib.datase.Tweet): 
 
         Returns:
             None
@@ -61,7 +70,7 @@ class Tweet():
         """現在保持しているレコード中、created_dateの最大値
 
         Args:
-            self (Tweet): 
+            self (Lib.datase.Tweet): 
 
         Returns:
             String: 最大のtid
@@ -74,7 +83,7 @@ class Tweet():
         """現在保持しているレコード中、created_dateが最大のtidを返却
 
         Args:
-            self (Tweet): 
+            self (Lib.datase.Tweet): 
 
         Returns:
             String: 最大のtid

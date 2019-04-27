@@ -7,8 +7,15 @@ from Lib.settings import settings
 
 
 class Twitter:
-
+    """twitterAPI通信処理
+    """
     def __init__(self):
+        """初期処理
+        Args:
+            self(Lib.twitter):
+        Return:
+            None
+        """
         token = settings.get()
         CK = token['CONSUMER_KEY']
         CS = token['CONSUMER_SECRET']
@@ -16,16 +23,14 @@ class Twitter:
         ATS = token['ACCESS_TOKEN_SECRET']
         self.twitter = OAuth1Session(CK, CS, AT, ATS)
 
-    # def read(self):
-    #     message = tw_message()
-    #     message.add_message('luna','234242432','2019-01-01')
-    #     message.add_message('luna1','234242433','2019-01-02')
-    #     message.add_message('luna2','234242434','2019-01-03')
-    #     return message
-
-    # 本物コード
-    # リスト読み込み
     def read_list_tl(self):
+        """リストのタイムライン読み込み
+        
+        Args:
+            self(Lib.Twitter):
+        Returns:
+            
+        """
         message = tw_message()
         url = "https://api.twitter.com/1.1/lists/statuses.json" #タイムライン取得エンドポイント
 

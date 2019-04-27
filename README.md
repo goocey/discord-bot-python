@@ -1,21 +1,41 @@
 # これはなに
 
-とあるサーバーで実行される予定のBotの予定。
+とあるサーバーで動かすBotです。
+
+# 必要なもの
+
+- PostgreSQL
+- Python
 
 ## どうやったら動かせる？
 
-- vagrant up
-- vagrant provision
-- cd /vagrant/src
-- python3.6 main.py
+### 開発時点
 
-## 必要ライブラリ
+```shell
+docker-compose up -d postgresql twitter-download twitter-chat
+```
 
-PyYaml
-Discord-rewrite(discord.py 1.0.0a)
+twitter-downloadとtwitter-chatはただのスクリプト実行用のサービスなので、runで動かしてもよい
+例：
 
-## twitter連携部
+```shell
+docker-compose run -rm twitter-download
+```
 
-[ココ参照](https://qiita.com/bakira/items/00743d10ec42993f85eb)
-[twitter アプリ申請について](https://qiita.com/kngsym2018/items/2524d21455aac111cdee)
-[botで定期実行](https://qiita.com/rareshana/items/76d9c9d0fa68ec242d13)
+## 必要ライブラリなど
+
+以下がDockerで構築する際に使用するファイルなのでそこ見てね
+
+- [require.txt][1]
+- [Dockerfile][2]
+
+物理マシン、VMで動かす場合は元イメージのDockerfileをみて構築すればいいよ。
+
+## 申請など
+
+twitter APIを使用しているので、twitterアプリケーション作成の申請をしてくださいな。
+[Twitter API 登録 (アカウント申請方法) から承認されるまでの手順まとめ　※2018年9月時点の情報][3]
+
+[1]:./docker-python/require.txt
+[2]:./docker-python/Dockerfile
+[3]:https://qiita.com/kngsym2018/items/2524d21455aac111cdee
