@@ -3,7 +3,7 @@ import requests
 from requests_oauthlib import OAuth1Session
 from .tw_message import tw_message
 from .dataset.tweet import Tweet
-from Lib.settings import settings
+from lib.settings import settings
 
 
 class Twitter:
@@ -12,7 +12,7 @@ class Twitter:
     def __init__(self):
         """初期処理
         Args:
-            self(Lib.twitter):
+            self(lib.twitter):
         Return:
             None
         """
@@ -27,7 +27,7 @@ class Twitter:
         """リストのタイムライン読み込み
         
         Args:
-            self(Lib.Twitter):
+            self(lib.Twitter):
         Returns:
             
         """

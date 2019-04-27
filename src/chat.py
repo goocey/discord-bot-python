@@ -8,10 +8,10 @@ from discord.ext import commands
 from pprint import pprint
 from discord import TextChannel, VoiceChannel
 import threading
-from Lib.dataset.tweet import Tweet
-from Lib.model.tweet import Tweet as tw
-from Lib.model.db import session
-from Lib.settings import settings
+from lib.dataset.tweet import Tweet
+from lib.model.tweet import Tweet as tw
+from lib.model.db import session
+from lib.settings import settings
 
 class Chat(discord.Client):
     """discordでtweet情報を流すためのクラス

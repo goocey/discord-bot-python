@@ -10,7 +10,7 @@ class tw_message:
     def __init__(self):
         """インストラクタ
         Args:
-            Lib.tw_message
+            lib.tw_message
         Return:
             None
         """
