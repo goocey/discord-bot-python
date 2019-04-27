@@ -15,7 +15,7 @@ class settings:
         return token['SETTINGS']
 
     @staticmethod
-    def get_channel_list():
+    def get_role_list():
         """設定を返却
         Args:
         Returns:
