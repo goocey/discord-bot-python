@@ -4,6 +4,9 @@ from sqlalchemy import Column, Integer, String, Float, DateTime
 from .db import Base
 from .db import ENGINE
 
+"""
+tweetモデル定義
+"""
 class Tweet(Base):
     """
     Tweetモデル

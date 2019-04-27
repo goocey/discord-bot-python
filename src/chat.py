@@ -14,11 +14,22 @@ from Lib.model.db import session
 from Lib.settings import settings
 
 class Chat(discord.Client):
+    """discordでtweet情報を流すためのクラス
+    """
+
     def __init__(self, *args, **kwargs):
+        """初期処理
+        """
         super().__init__(*args, **kwargs)
 
     async def on_ready(self):
+        """ログイン完了辺りで呼ばれるコールバック
+
+        Args:
+            self(Chat):
+        """
         print('Logged in as')
+        # チャンネル取得
         channel = discord.utils.get(self.get_all_channels(),  guild__name='test' ,name='tweet')
         # create the background task and run it in the background
         self.bg_task = self.loop.create_task(self.my_background_task(channel))
@@ -30,10 +41,14 @@ class Chat(discord.Client):
             
         tw = Tweet()
         print(channel)
+
+        # とにかく繰り返す
+        # 多分このタスク自体をずっと繰り返すというやり方があるはずなのだけど分からないので
         while True:
             for tweet in tw.get_all_enable_status():
                 await channel.send(tweet.url)
                 tweet.post_status=1
+                # TODO:この辺も例外処理を行っていおいた方が良いんじゃね？
                 session.flush()
                 session.commit()
                 await asyncio.sleep(1)
