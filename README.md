@@ -2,7 +2,7 @@
 
 とあるサーバーで動かすBotです。
 
-# 必要なもの
+## 必要なもの
 
 - PostgreSQL
 - Python
