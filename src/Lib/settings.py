@@ -4,12 +4,23 @@ import yaml
 """
 class settings:
     @staticmethod
-    def get():
+    def get_setting():
         """設定を返却
         Args:
         Returns:
             dict?のはず
         """
-        with open('data.yml') as file:
+        with open('data.yml', encoding="utf-8") as file:
             token = yaml.safe_load(file)
-        return token
+        return token['SETTINGS']
+
+    @staticmethod
+    def get_channel_list():
+        """設定を返却
+        Args:
+        Returns:
+            dict?のはず
+        """
+        with open('data.yml', encoding="utf-8") as file:
+            token = yaml.safe_load(file)
+        return token['ROLE_LIST']

@@ -15,7 +15,7 @@ class tw_message:
             None
         """
         self.list = []
-        self.data = settings.get()
+        self.data = settings.get_setting()
 
     def add_message(self, user, screen_name, tid, created_date):
         """配列にtweet情報を追加

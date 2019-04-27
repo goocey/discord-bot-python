@@ -16,7 +16,7 @@ class Twitter:
         Return:
             None
         """
-        token = settings.get()
+        token = settings.get_setting()
         CK = token['CONSUMER_KEY']
         CS = token['CONSUMER_SECRET']
         AT = token['ACCESS_TOKEN']

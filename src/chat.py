@@ -54,6 +54,6 @@ class Chat(discord.Client):
                 await asyncio.sleep(1)
             await asyncio.sleep(10)
 
-setting = settings.get()
+setting = settings.get_setting()
 client = Chat()
 client.run(setting['DISCORD_TOKEN'])
