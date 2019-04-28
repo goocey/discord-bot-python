@@ -1,0 +1,74 @@
+version: "3.7"
+
+services:
+  twitter-download:
+    build:
+      context: ./docker-python
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+    working_dir: /src
+    entrypoint:
+      - /usr/local/bin/python3
+      - -B
+      - get_twitter.py
+    links:
+      - postgresql
+
+  twitter-chat:
+    build:
+      context: ./docker-python
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+    working_dir: /src
+    entrypoint:
+      - /usr/local/bin/python3
+      - -B
+      - chat.py
+    links:
+      - postgresql
+
+  test:
+    build:
+      context: ./docker-python
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+    working_dir: /src
+    entrypoint:
+      - /usr/local/bin/python3
+      - -B
+      - test.py
+    links:
+      - postgresql
+
+  postgresql:
+    image: postgres:10.5
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    volumes:
+      - type: bind
+        source: ./docker-python/init-db
+        target: /docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: kokoro
+      POSTGRES_PASSWORD: kokoro
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    hostname: postgresql
+    restart: always
+    user: root
+
+
+volumes:
+  src:
+
+networks:
+  overlay:

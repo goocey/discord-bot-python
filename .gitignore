@@ -1,4 +1,4 @@
 /.vagrant
-*.yml
+/src/data.yml
 .vscode
 __pycache__

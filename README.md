@@ -34,6 +34,7 @@ docker-compose run -rm twitter-download
 ## 申請など
 
 twitter APIを使用しているので、twitterアプリケーション作成の申請をしてくださいな。
+
 [Twitter API 登録 (アカウント申請方法) から承認されるまでの手順まとめ　※2018年9月時点の情報][3]
 
 ## 感謝
