@@ -8,13 +8,13 @@ import time
 setting = settings.get_setting()
 def read_twitter():
         twitter = Twitter()
-        twitter.get_list_id('kokoro_discord')
+        twitter.get_list_id(setting['TWITTER_LIST'])
         messages =  twitter.read_list_tl()
         tweet = Tweet()
         tweet.add_values(messages)
 
 def main():
-        count=10
+        count=setting['TWITTER_READ_TIME_MINUTE']
         read_twitter()
         time.sleep(count)
         schedule.every(count).minutes.do(read_twitter)

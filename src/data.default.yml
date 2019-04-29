@@ -9,6 +9,8 @@ SETTINGS:
   TWEET_CHANNEL: twitter
   SERVER: こころ
   TWITTER_BASE: https://twitter.com/{0}/status/{1}
+  TWITTER_READ_TIME_MINUTE: 1
+  TWITTER_LIST: 
 ROLE_LIST:
   - 神経発達障害
   - 統合失調症
