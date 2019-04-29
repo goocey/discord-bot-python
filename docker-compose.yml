@@ -33,7 +33,7 @@ services:
     links:
       - postgresql
 
-  test:
+  role-bot:
     build:
       context: ./docker-python
       dockerfile: Dockerfile
@@ -45,7 +45,7 @@ services:
     entrypoint:
       - /usr/local/bin/python3
       - -B
-      - test.py
+      - rolebot.py
     links:
       - postgresql
 

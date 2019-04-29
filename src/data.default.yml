@@ -1,10 +1,26 @@
-DISCORD_TOKEN: 
-CONSUMER_KEY: 
-CONSUMER_SECRET: 
-ACCESS_TOKEN: 
-ACCESS_TOKEN_SECRET: 
-DATABASE: postgresql://id:pw@host:5432/db
-DATABASE_ENCODING: utf-8
-TWEET_CHANNEL: twitter
-SERVER: こころ
-TWITTER_BASE: https://twitter.com/{0}/status/{1}
+SETTINGS:
+  DISCORD_TOKEN: 
+  CONSUMER_KEY: 
+  CONSUMER_SECRET: 
+  ACCESS_TOKEN: 
+  ACCESS_TOKEN_SECRET: 
+  DATABASE: postgresql://id:pw@host:5432/db
+  DATABASE_ENCODING: utf-8
+  TWEET_CHANNEL: twitter
+  SERVER: こころ
+  TWITTER_BASE: https://twitter.com/{0}/status/{1}
+ROLE_LIST:
+  - 神経発達障害
+  - 統合失調症
+  - 双極性障害
+  - 抑うつ障害
+  - 不安障害
+  - 強迫性障害
+  - パニック障害
+  - ストレス因関連障害
+  - 解離性障害
+  - 摂食障害
+  - 睡眠障害
+  - 物質関連障害
+  - パーソナリティ障害
+  - セクシャルマイノリティ
