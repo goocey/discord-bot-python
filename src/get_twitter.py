@@ -1,9 +1,11 @@
 from lib.twitter import Twitter
 from lib.tw_message import tw_message
 from lib.dataset.tweet import Tweet
+from lib.settings import settings
 import schedule
 import time
 
+setting = settings.get_setting()
 def read_twitter():
         twitter = Twitter()
         twitter.get_list_id('kokoro_discord')
