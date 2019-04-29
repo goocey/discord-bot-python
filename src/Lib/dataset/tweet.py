@@ -22,10 +22,10 @@ class Tweet():
         """未投稿データを返却
 
         Args:
-            self(Lib.datase.Tweet): 
+            self(lib.datase.Tweet): 
 
             Returns:
-                [Lib.model.Tweet]: 未投稿データ
+                [lib.model.Tweet]: 未投稿データ
         """
         users = session.query(tw).filter( tw.post_status == 0 ).\
             order_by(desc(tw.created_date)).all()
@@ -40,7 +40,7 @@ class Tweet():
            => つまり、後から参加した人のツイートは除外する
 
         Args:
-            self(Lib.datase.Tweet): 
+            self(lib.datase.Tweet): 
 
         Returns:
             None
@@ -70,7 +70,7 @@ class Tweet():
         """現在保持しているレコード中、created_dateの最大値
 
         Args:
-            self (Lib.datase.Tweet): 
+            self (lib.datase.Tweet): 
 
         Returns:
             String: 最大のtid
@@ -83,7 +83,7 @@ class Tweet():
         """現在保持しているレコード中、created_dateが最大のtidを返却
 
         Args:
-            self (Lib.datase.Tweet): 
+            self (lib.datase.Tweet): 
 
         Returns:
             String: 最大のtid

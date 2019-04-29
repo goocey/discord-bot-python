@@ -8,7 +8,7 @@ from ..settings import settings
 sqlalchemyのでDB接続周りを行うメソッド実行用ソース
 """
 
-setting = settings.get()
+setting = settings.get_setting()
 ENGINE = create_engine(
     setting['DATABASE'],
     encoding = setting['DATABASE_ENCODING'],

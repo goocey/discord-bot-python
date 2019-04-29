@@ -1,6 +1,6 @@
-from Lib.twitter import Twitter
-from Lib.tw_message import tw_message
-from Lib.dataset.tweet import Tweet
+from lib.twitter import Twitter
+from lib.tw_message import tw_message
+from lib.dataset.tweet import Tweet
 import schedule
 import time
 

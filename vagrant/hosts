@@ -1,0 +1,2 @@
+[vagrants]
+192.168.33.10 ansible_ssh_port=22 ansible_ssh_connction=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant

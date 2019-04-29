@@ -1,6 +1,6 @@
 import unittest
-from Lib.tw_message import tw_message
-from Lib.dataset.tweet import Tweet
+from lib.tw_message import tw_message
+from lib.dataset.tweet import Tweet
 
 class TestModelTweet(unittest.TestCase):
     def setUp(self):

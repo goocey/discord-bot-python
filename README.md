@@ -34,8 +34,14 @@ docker-compose run -rm twitter-download
 ## 申請など
 
 twitter APIを使用しているので、twitterアプリケーション作成の申請をしてくださいな。
+
 [Twitter API 登録 (アカウント申請方法) から承認されるまでの手順まとめ　※2018年9月時点の情報][3]
+
+## 感謝
+
+[discord\.pyのBot Commands Frameworkを用いたBot開発 \- Qiita][4]
 
 [1]:./docker-python/require.txt
 [2]:./docker-python/Dockerfile
 [3]:https://qiita.com/kngsym2018/items/2524d21455aac111cdee
+[4]:https://qiita.com/Lazialize/items/81f1430d9cd57fbd82fb

@@ -10,12 +10,12 @@ class tw_message:
     def __init__(self):
         """インストラクタ
         Args:
-            Lib.tw_message
+            lib.tw_message
         Return:
             None
         """
         self.list = []
-        self.data = settings.get()
+        self.data = settings.get_setting()
 
     def add_message(self, user, screen_name, tid, created_date):
         """配列にtweet情報を追加
