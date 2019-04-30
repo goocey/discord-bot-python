@@ -28,7 +28,7 @@ class Tweet():
                 [lib.model.Tweet]: 未投稿データ
         """
         users = session.query(tw).filter( tw.post_status == 0 ).\
-            order_by(desc(tw.created_date)).all()
+            order_by(tw.created_date.asc()).all()
         return users
 
     def add_values(self,tweets):
