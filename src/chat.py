@@ -30,7 +30,7 @@ class Chat(discord.Client):
         """
         print('Logged in as')
         # チャンネル取得
-        channel = discord.utils.get(self.get_all_channels(),  guild__name='test' ,name='tweet')
+        channel = discord.utils.get(self.get_all_channels(),  guild__name=setting['SERVER'] ,name=setting['TWEET_CHANNEL'])
         # create the background task and run it in the background
         self.bg_task = self.loop.create_task(self.my_background_task(channel))
 

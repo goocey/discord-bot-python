@@ -10,6 +10,7 @@ class RoleCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.role_list = settings.get_role_list()
+        self.role_help = settings.get_role_help()
 
     # メインとなるroleコマンド
     @commands.group()
@@ -47,10 +48,10 @@ class RoleCog(commands.Cog):
                 await ctx.send('実際の役割とソース指定の役割が相違しているよ。')
 
     @role.command()
-    async def help(self, ctx, *mes: str):
+    async def help(self, ctx):
         list_str = "\n".join(self.role_list)
-        message = ""
-        message = message + "役割一覧は以下の通りだよ。\n" + list_str
+        message = "\n".join(self.role_help)
+        message += "\n\n＜役職一覧＞\n" + list_str
         await ctx.send(message)
 
 # Bot本体側からコグを読み込む際に呼び出される関数。

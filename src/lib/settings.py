@@ -24,3 +24,14 @@ class settings:
         with open('data.yml', encoding="utf-8") as file:
             token = yaml.safe_load(file)
         return token['ROLE_LIST']
+
+    @staticmethod
+    def get_role_help():
+        """設定を返却
+        Args:
+        Returns:
+            dict?のはず
+        """
+        with open('data.yml', encoding="utf-8") as file:
+            token = yaml.safe_load(file)
+        return token['ROLE_HELP']
