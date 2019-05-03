@@ -2,3 +2,4 @@
 /src/data.yml
 .vscode
 __pycache__
+*.retry
