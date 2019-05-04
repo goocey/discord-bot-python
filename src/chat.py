@@ -38,7 +38,7 @@ class Chat(discord.Client):
         await client.wait_until_ready()
         # await client.wait_for('ready')
         print('background_task')
-            
+
         tw = Tweet()
         print(channel)
 
@@ -49,8 +49,6 @@ class Chat(discord.Client):
                 session.begin()
                 await channel.send(tweet.url)
                 tweet.post_status=1
-                # TODO:この辺も例外処理を行っていおいた方が良いんじゃね？
-                #session.flush()
                 session.commit()
                 await asyncio.sleep(1)
             await asyncio.sleep(10)
