@@ -28,11 +28,10 @@ class RoleCog(commands.Cog):
             return None
 
         if role in ctx.guild.roles:
-            try:
-                await ctx.author.add_roles(role)
- 
+            await ctx.author.add_roles(role)
+
+        await ctx.message.delete()
         await ctx.send('役割を適用したよ。' + str(role))
-        await self.bot.delete_message(ctx.message)
 
     # roleコマンドのサブコマンド
     # 指定したユーザーに指定した役職を付与する。
@@ -43,9 +42,9 @@ class RoleCog(commands.Cog):
             return None
 
         if role in ctx.guild.roles:
-            try:
-                await ctx.author.remove_roles(role)
-        
+            await ctx.author.remove_roles(role)
+
+        await ctx.message.delete()
         await ctx.send('役割を除外したよ。' + str(role))
 
     @role.command()
