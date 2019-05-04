@@ -1,7 +1,8 @@
 from discord.ext import commands # Bot Commands Frameworkのインポート
 from lib.settings import settings
-from discord.ext.commands import errors
+import discord.ext.commands.errors
 import discord
+import pprint
 
 # コグとして用いるクラスを定義。
 class RoleCog(commands.Cog):
@@ -18,8 +19,7 @@ class RoleCog(commands.Cog):
         # サブコマンドが指定されていない場合、メッセージを送信する。
         if ctx.invoked_subcommand is None:
             await ctx.send('このコマンドにはサブコマンドが必要です。')
-
-    # roleコマンドのサブコマンド
+   
     # 指定したユーザーに指定した役職を付与する。
     @role.command()
     async def add(self, ctx, role: discord.Role):
@@ -28,10 +28,10 @@ class RoleCog(commands.Cog):
             return None
 
         if role in ctx.guild.roles:
-            try:
-                await ctx.author.add_roles(role)
-            except errors.BadArgument:
-                await ctx.send('実際の役割とソース指定の役割が相違しているよ。')
+            await ctx.author.add_roles(role)
+
+        await ctx.message.delete()
+        await ctx.send('役割を適用したよ。' + str(role))
 
     # roleコマンドのサブコマンド
     # 指定したユーザーに指定した役職を付与する。
@@ -42,10 +42,10 @@ class RoleCog(commands.Cog):
             return None
 
         if role in ctx.guild.roles:
-            try:
-                await ctx.author.remove_roles(role)
-            except errors.BadArgument:
-                await ctx.send('実際の役割とソース指定の役割が相違しているよ。')
+            await ctx.author.remove_roles(role)
+
+        await ctx.message.delete()
+        await ctx.send('役割を除外したよ。' + str(role))
 
     @role.command()
     async def help(self, ctx):

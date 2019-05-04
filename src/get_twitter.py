@@ -5,14 +5,18 @@ from lib.settings import settings
 import requests.exceptions
 import schedule
 import time
+import requests.exceptions
 
 setting = settings.get_setting()
 def read_twitter():
-        twitter = Twitter()
-        twitter.get_list_id(setting['TWITTER_LIST'])
-        messages =  twitter.read_list_tl()
-        tweet = Tweet()
-        tweet.add_values(messages)
+        try:
+                twitter = Twitter()
+                twitter.get_list_id(setting['TWITTER_LIST'])
+                messages =  twitter.read_list_tl()
+                tweet = Tweet()
+                tweet.add_values(messages)
+        except ConnectionError:
+                pass
 
 def main():
         count=setting['TWITTER_READ_TIME_MINUTE']
