@@ -65,7 +65,7 @@ class Twitter:
         if res.status_code == 200: #正常通信出来た場合
             data = json.loads(res.text)
             for line in data:
-                if line['full_name'] == "@kokoro_discord/list":
+                if line['full_name'] == "@" + list_name + "/list":
                     print(line['id_str'])
         else: #正常通信出来なかった場合
             raise requests.exceptions.ConnectionError
