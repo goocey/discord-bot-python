@@ -15,7 +15,7 @@ def read_twitter():
                 messages =  twitter.read_list_tl()
                 tweet = Tweet()
                 tweet.add_values(messages)
-        except ConnectionError:
+        except requests.exceptions.ConnectionError:
                 pass
 
 def main():
@@ -27,7 +27,7 @@ def main():
                 while True:
                         schedule.run_pending()
                         time.sleep(1)
-        except ConnectionError:
+        except requests.exceptions.ConnectionError:
                 pass
 
 if __name__ == "__main__":
